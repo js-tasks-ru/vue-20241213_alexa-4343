@@ -16,7 +16,7 @@ export default defineComponent({
       x.value = event.offsetX
       y.value = event.offsetY
     }
-
+    
     return {
       x,
       y,
