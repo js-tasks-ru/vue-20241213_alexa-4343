@@ -1,14 +1,17 @@
 import { defineComponent, createApp } from 'vue';
 
+function formatAsLocalDate() {
+    return new Date().toLocaleString(navigator.language, {dateStyle: 'long'})
+}
+
 const App = defineComponent({
     name: 'App',
 
-    data() {},
+    setup() {
 
-    methods: {
-        formatAsLocalDate() {
-            return new Date().toLocaleString(navigator.language, {dateStyle: 'long'})
-        },
+        return {
+            formatAsLocalDate
+        }
     },
 
     template: `
