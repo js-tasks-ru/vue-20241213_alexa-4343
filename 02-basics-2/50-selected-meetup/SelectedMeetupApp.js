@@ -1,27 +1,28 @@
-import { defineComponent, ref, onMounted, onUpdated } from 'vue'
+import { defineComponent, ref, onMounted, watchEffect } from 'vue'
 import { getMeetup } from './meetupsService.ts'
 
 export default defineComponent({
   name: 'SelectedMeetupApp',
 
   setup() {
-    let pagination = ref([1, 2, 3, 4, 5]);
-    let picked = ref(1);
-    let meetup = ref(null);
-
+    const pagination = ref([1, 2, 3, 4, 5]);
+    const picked = ref(1);
+    const meetup = ref(null);
 
     onMounted(async() => {
       meetup.value = await getMeetup(picked.value)
     })
 
-    onUpdated(async() => {
-      meetup.value = await getMeetup(picked.value)
+    watchEffect(() => {
+      getMeetup(picked.value).then((data) => {
+        meetup.value = data
+      })
     })
 
     return {
       pagination,
       picked,
-      meetup
+      meetup,
     }
   },
 
