@@ -12,12 +12,7 @@ export default defineComponent({
     cards: {
       type: Array,
       required: true,
-    },
-
-    icons: {
-      type: Object,
-      required: true,
-    },
+    }
   },
 
   template: `
@@ -26,7 +21,6 @@ export default defineComponent({
         v-for="(card, index) in cards"
         :key="card"
         :card="card"
-        :icons="icons"
       />
     </ul>
   `,

@@ -1,4 +1,5 @@
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { WeatherConditionIcons } from './weather.service.ts'
 
 function formatAsCelsiusTemp(kelvinTemp) {
   return (kelvinTemp - 273.15).toFixed(1)
@@ -8,14 +9,6 @@ function formatAsPressure(pressure) {
   return (pressure * 0.75).toFixed(0)
 }
 
-function checkIsNight(time) {
-  if( time.sunset > time.dt && time.dt >= time.sunrise) {;
-    return false
-  } else {
-    return true
-  }
-}
-
 export default defineComponent({
   name: 'WeatherListItem',
 
@@ -23,25 +16,26 @@ export default defineComponent({
     card: {
       type: Object,
       required: true,
-    },
-
-    icons: {
-      type: Object,
-      required: true,
-    },
+    }
   },
 
-  setup() {
+  setup(props) {
+    const icons = WeatherConditionIcons
+
+    const isDay = computed(() => {
+      return props.card.current.sunset > props.card.current.dt && props.card.current.dt >= props.card.current.sunrise
+    })
 
     return {
+      icons,
       formatAsCelsiusTemp,
       formatAsPressure,
-      checkIsNight
+      isDay
     }
   },
 
   template: `
-    <li class="weather-card" :class="{ 'weather-card--night': checkIsNight(card.current) }">
+    <li class="weather-card" :class="{ 'weather-card--night': !isDay }">
       <div v-if='card.alert' class="weather-alert">
         <span class="weather-alert__icon">⚠️</span>
         <span class="weather-alert__description">{{ card.alert.sender_name }}: {{ card.alert.description }}</span>
