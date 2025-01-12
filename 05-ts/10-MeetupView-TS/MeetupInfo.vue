@@ -5,27 +5,10 @@ import { UiIcon } from '@shgk/vue-course-ui'
 type Props = {
   organizer: string,
   place: string,
-  date: number 
+  date: number,
 }
 
 const props = defineProps<Props>()
-
-// const props = defineProps({
-//   organizer: {
-//     type: String,
-//     required: true,
-//   },
-
-//   place: {
-//     type: String,
-//     required: true,
-//   },
-
-//   date: {
-//     type: Number,
-//     required: true,
-//   },
-// })
 
 const isoDate = computed(() => new Date(props.date).toISOString().slice(0, 10))
 const localDate = computed(() =>

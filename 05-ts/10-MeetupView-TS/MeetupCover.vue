@@ -8,17 +8,6 @@ type Props = {
 
 const props = defineProps<Props>()
 
-// const props = defineProps({
-//   title: {
-//     type: String,
-//     required: true,
-//   },
-
-//   image: {
-//     type: String,
-//   },
-// })
-
 const bgStyle = computed(() => (props.image ? { '--bg-url': `url('${props.image}')` } : undefined))
 </script>
 

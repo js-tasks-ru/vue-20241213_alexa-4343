@@ -1,16 +1,9 @@
 <script setup lang="ts">
 
-type Props = {
+defineProps<{
   description?: string
-}
+}>()
 
-defineProps<Props>()
-
-// defineProps({
-//   description: {
-//     type: String,
-//   },
-// })
 </script>
 
 <template>
