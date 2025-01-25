@@ -3,7 +3,7 @@
 type Props = {
   options: {
     text: string,
-    value: 'T'
+    value: T
   }[]
 }
 
