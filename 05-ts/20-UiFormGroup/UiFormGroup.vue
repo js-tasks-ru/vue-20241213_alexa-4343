@@ -11,9 +11,9 @@ type Props = {
 }
 
 type Slots = {
-  default?: () => Slot,
-  label?: () => Slot,
-  description?: () => Slot 
+  default?: Slot,
+  label?: Slot,
+  description?: Slot 
 }
 
 const props = defineProps<Props>()
